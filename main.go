@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	isMutant "github.com/edwintrumpet/mercado-libre-test/is-mutant"
+	isMutant "github.com/edwintrumpet/mercado-libre-test/is_mutant"
 )
 
 func main() {

@@ -8,6 +8,12 @@ This program have some DNA secuences and uses the IsMutant function to evaluate 
 
 If DNA secuence belongs to a mutant IsMutant function will return a true, if DNA secuence does not belong a mutant so it will return a false.
 
+## Scripts
+
+- **`go run .`** => Execute app
+- **`go test -v ./...`** => Run tests
+- **`go test -cover ./...`** => Run tests coverage
+
 ## Develop and execution
 
 To run this program you must to have Go installed and execute the following command into the project folder

@@ -5,6 +5,7 @@
 </p>
 
 <p align="center">
+  <img src="https://raw.githubusercontent.com/devicons/devicon/2809b567852a4648062a2d3e7c1c531367458c0b/icons/docker/docker-original.svg" alt="docker" width="40" height="40"/>
   <img src="https://simpleicons.org/icons/githubactions.svg" alt="github actions" width="40" height="40"/>
   <img src="https://raw.githubusercontent.com/devicons/devicon/2809b567852a4648062a2d3e7c1c531367458c0b/icons/go/go-original.svg" alt="go" width="40" height="40"/>
 </p>
@@ -42,13 +43,25 @@ To run API in develop mode
 ./run.sh
 ```
 
-API will be listening in http://localhost:8080
+API will be listening on http://localhost
 
 To remove docker container
 
 ```shell
 ./run.sh down
 ```
+
+### Without Docker
+
+To run API in develop mode you must to have Go installed
+
+To run API in develop mode
+
+```shell
+./run.sh run
+```
+
+API will be listening on http://localhost
 
 ## Deploy
 

@@ -6,23 +6,6 @@ import (
 )
 
 func main() {
-	// noMutantDNA := []string{
-	// 	"ATGCGA",
-	// 	"CAGTGC",
-	// 	"TTATTT",
-	// 	"AGACGG",
-	// 	"GCGTCA",
-	// 	"TCACTG",
-	// }
-	// mutantDNA := []string{
-	// 	"ATGCGA",
-	// 	"CAGTGC",
-	// 	"TTATGT",
-	// 	"AGAAGG",
-	// 	"CCCCTA",
-	// 	"TCACTG",
-	// }
-
 	router := gin.Default()
 
 	routes.Set(router)

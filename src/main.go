@@ -1,32 +1,31 @@
 package main
 
 import (
-	"fmt"
-
-	isMutant "github.com/edwintrumpet/mercado-libre-test/src/functions/is_mutant"
+	"github.com/edwintrumpet/mercado-libre-test/src/functions/routes"
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	noMutantDNA := []string{
-		"ATGCGA",
-		"CAGTGC",
-		"TTATTT",
-		"AGACGG",
-		"GCGTCA",
-		"TCACTG",
-	}
-	mutantDNA := []string{
-		"ATGCGA",
-		"CAGTGC",
-		"TTATGT",
-		"AGAAGG",
-		"CCCCTA",
-		"TCACTG",
-	}
+	// noMutantDNA := []string{
+	// 	"ATGCGA",
+	// 	"CAGTGC",
+	// 	"TTATTT",
+	// 	"AGACGG",
+	// 	"GCGTCA",
+	// 	"TCACTG",
+	// }
+	// mutantDNA := []string{
+	// 	"ATGCGA",
+	// 	"CAGTGC",
+	// 	"TTATGT",
+	// 	"AGAAGG",
+	// 	"CCCCTA",
+	// 	"TCACTG",
+	// }
 
-	noMutantResult := isMutant.IsMutant(noMutantDNA)
-	mutantResult := isMutant.IsMutant(mutantDNA)
+	router := gin.Default()
 
-	fmt.Println("noMutantResult", noMutantResult)
-	fmt.Println("mutantResult", mutantResult)
+	routes.Set(router)
+
+	router.Run()
 }

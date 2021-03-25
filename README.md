@@ -5,6 +5,7 @@
 </p>
 
 <p align="center">
+  <img src="https://simpleicons.org/icons/githubactions.svg" alt="github actions" width="40" height="40"/>
   <img src="https://raw.githubusercontent.com/devicons/devicon/2809b567852a4648062a2d3e7c1c531367458c0b/icons/go/go-original.svg" alt="go" width="40" height="40"/>
 </p>
 
@@ -14,16 +15,27 @@ If DNA secuence belongs to a mutant IsMutant function will return a true, if DNA
 
 ## Scripts
 
-- **`./run.sh`** => Execute app
+- **`./run.sh`** => Execute API in develop mode
+- **`./run.sh build`** => Build API
 - **`./run.sh test`** => Run tests
 - **`./run.sh coverage`** => Run tests coverage
 
-## Develop and execution
+## Develop
 
-To run this program you must to have Go installed and execute the following command into the project folder
+To run API in develop mode you must to have Go installed and execute the following command into the project folder
 
 ```shell
 ./run.sh
+```
+
+API will be listening in http://localhost:8080
+
+## Deploy
+
+To build API you must have Go installed and execute the following command into the project folder
+
+```shell
+./run.sh build
 ```
 
 ## Author

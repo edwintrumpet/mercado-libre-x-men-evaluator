@@ -7,7 +7,11 @@ if [[ $OSTYPE == "msys" ]]; then
 fi
 
 function main() {
-  go run ./src
+  CompileDaemon -exclude-dir=.git -exclude=".#*" -directory=./src -build="go build -o ../bin/server${sufix}" -command="./bin/server${sufix}" --color=true
+}
+
+function build() {
+  go build -o ./bin/server${sufix} ./src
 }
 
 function runTest() {
@@ -28,6 +32,9 @@ case $1 in
     ;;
   run)
     main
+    ;;
+  build)
+    build
     ;;
   test)
     runTest

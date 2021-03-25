@@ -1,0 +1,11 @@
+bin
+
+README.md
+LICENSE
+
+.git
+.github
+.gitignore
+
+.dockerignore
+docker

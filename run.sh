@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source ./.env
+
 sufix=""
 
 if [[ $OSTYPE == "msys" ]]; then
@@ -10,8 +12,28 @@ function main() {
   CompileDaemon -exclude-dir=.git -exclude=".#*" -directory=./src -build="go build -o ../bin/server${sufix}" -command="./bin/server${sufix}" --color=true
 }
 
+function dockerDev() {
+  docker-compose -f ./docker/docker-compose.dev.yml up
+}
+
+function dockerDown() {
+  docker-compose -f ./docker/docker-compose.dev.yml down
+}
+
+function dockerBuildDev() {
+  docker-compose -f ./docker/docker-compose.dev.yml build
+}
+
 function build() {
-  go build -o ./bin/server${sufix} ./src
+  docker build -f ./docker/dockerfiles/prod.Dockerfile -t ${ECR_URL}/${REPOSITORY_NAME}:${TAG} \.
+}
+
+function ecrAuth() {
+  aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 251265670580.dkr.ecr.us-east-1.amazonaws.com 
+}
+
+function push() {
+  docker build -f ./docker/dockerfiles/prod.Dockerfile -t ${ECR_URL}/${REPOSITORY_NAME}:${TAG} \. && docker push ${ECR_URL}/${REPOSITORY_NAME}:${TAG}
 }
 
 function runTest() {
@@ -28,13 +50,25 @@ function notFound() {
 
 case $1 in
   '')
-    main
+    dockerDev
+    ;;
+  buildDev)
+    dockerBuildDev
+    ;;
+  down)
+    dockerDown
     ;;
   run)
     main
     ;;
   build)
     build
+    ;;
+  ecrAuth)
+    ecrAuth
+    ;;
+  push)
+    push
     ;;
   test)
     runTest

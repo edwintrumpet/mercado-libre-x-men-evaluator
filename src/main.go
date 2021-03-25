@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/edwintrumpet/mercado-libre-test/src/functions/routes"
+	"github.com/edwintrumpet/mercado-libre-test/src/routes"
 	"github.com/gin-gonic/gin"
 )
 
@@ -27,5 +27,5 @@ func main() {
 
 	routes.Set(router)
 
-	router.Run()
+	router.Run(":80")
 }

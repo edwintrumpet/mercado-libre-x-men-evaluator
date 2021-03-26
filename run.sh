@@ -36,6 +36,10 @@ function push() {
   docker build -f ./docker/dockerfiles/prod.Dockerfile -t ${ECR_URL}/${REPOSITORY_NAME}:${TAG} \. && docker push ${ECR_URL}/${REPOSITORY_NAME}:${TAG}
 }
 
+function runDB() {
+  docker \exec -it docker_db_1 psql -U postgres
+}
+
 function runTest() {
   go \test -v ./...
 }
@@ -58,9 +62,6 @@ case $1 in
   down)
     dockerDown
     ;;
-  run)
-    main
-    ;;
   build)
     build
     ;;
@@ -69,6 +70,9 @@ case $1 in
     ;;
   push)
     push
+    ;;
+  runDB)
+    runDB
     ;;
   test)
     runTest

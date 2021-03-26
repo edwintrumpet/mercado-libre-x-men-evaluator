@@ -16,6 +16,8 @@ belongs to a mutant.
 
 ## Routes
 
+API available on http://3.238.192.139/
+
 Request instructions
 
 | método | endpoint  | parámetros |            valores            |
@@ -63,8 +65,13 @@ Possible answers
 
 ## Scripts
 
-- **`./run.sh`** => Execute API in develop mode
-- **`./run.sh build`** => Build API
+- **`./run.sh`** => Execute API and database in develop mode
+- **`./run.sh buildDev`** => Build Docker image to develop
+- **`./run.sh down`** => Down develop container
+- **`./run.sh build`** => Build Docker image to production
+- **`./run.sh ecrAuth`** => Authenticate in ECR to make push
+- **`./run.sh push`** => Push docker image to ECR
+- **`./run.sh runDB`** => Enter the database to make SQL instructions with psql
 - **`./run.sh test`** => Run tests
 - **`./run.sh coverage`** => Run tests coverage
 
@@ -107,6 +114,18 @@ Grant all privileges to user
 
 ```sql
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO <username>;
+```
+
+Create the mutants database
+
+```sql
+CREATE DATABASE mutants OWNER <username>
+```
+
+Use mutants database
+
+```psql
+\c mutants
 ```
 
 Create **stats** table
@@ -165,6 +184,8 @@ And make push
 
 After that you can run task in cluster to deploy the image and API will
 be available in public IP.
+
+Database is hosted in AWS RDS
 
 If you want just obtain the docker image to production
 

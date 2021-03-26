@@ -11,7 +11,7 @@
   <img src="https://raw.githubusercontent.com/devicons/devicon/2809b567852a4648062a2d3e7c1c531367458c0b/icons/go/go-original.svg" alt="go" width="40" height="40"/>
 </p>
 
-API that takes some DNA secuences and evaluates if DNA secuence
+API that takes some DNA sequences and evaluates if DNA sequence
 belongs to a mutant.
 
 ## Routes
@@ -20,10 +20,10 @@ API available on http://3.238.192.139/
 
 Request instructions
 
-| método | endpoint  | parámetros |            valores            |
-| :----: | :-------: | :--------: | :---------------------------: |
-|  POST  | `/mutant` |    body    | See the following json format |
-|  GET   | `/stats`  |            |                               |
+| method | endpoint  | params |            values             |
+| :----: | :-------: | :----: | :---------------------------: |
+|  POST  | `/mutant` |  body  | See the following json format |
+|  GET   | `/stats`  |        |                               |
 
 ```json
 {
@@ -63,6 +63,17 @@ Possible answers
   }
   ```
 
+## Diagram of decuence
+
+- Route `/mutant`  
+  ![secuence for /mutant](./assets/secuence_mutants.png)
+- Route `/stats`  
+  ![secuence for /stats](./assets/secuence_stats.png)
+
+## System architecture
+
+![system architecture](./assets/arquitectura.png)
+
 ## Scripts
 
 - **`./run.sh`** => Execute API and database in develop mode
@@ -76,8 +87,6 @@ Possible answers
 - **`./run.sh coverage`** => Run tests coverage
 
 ## Develop
-
-### Using Docker
 
 To run API in develop mode you must to have Docker installed
 
@@ -170,7 +179,7 @@ To make push in repository you can set the environment variables
 in `.env` taking `.env.example` as example and set
 `~/.aws/credentials` with your IAM access key
 
-After that you need to autenticate to ECR
+After that you need to authenticate to ECR
 
 ```shell
 ./run.sh ecrAuth

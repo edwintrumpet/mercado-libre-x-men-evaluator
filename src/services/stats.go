@@ -1,17 +1,18 @@
 package services
 
 import (
-	"fmt"
-
 	"github.com/edwintrumpet/mercado-libre-test/src/database"
 	"github.com/edwintrumpet/mercado-libre-test/src/schema"
 )
 
-func Stats() schema.Stats {
+// Stats search in database the number of times that
+// was provided an specific type of dna, it returns
+// these values and a calculated ratio
+func Stats() (schema.Stats, error) {
 	var stats schema.Stats
 	response, err := database.StatsGet()
 	if err != nil {
-		fmt.Println(err)
+		return stats, err
 	}
 
 	m := make(map[string]int)
@@ -26,5 +27,5 @@ func Stats() schema.Stats {
 		stats.Ratio = stats.CountMutantDna
 	}
 
-	return stats
+	return stats, nil
 }

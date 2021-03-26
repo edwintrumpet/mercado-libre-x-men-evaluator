@@ -9,6 +9,8 @@ import (
 	_ "github.com/lib/pq"
 )
 
+// GetConnection returns a database conection using environmental
+// variables to connect
 func GetConnection() *sql.DB {
 	dbUser := os.Getenv("DB_USER")
 	dbPassword := os.Getenv("DB_PASSWORD")

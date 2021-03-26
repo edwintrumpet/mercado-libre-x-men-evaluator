@@ -21,12 +21,20 @@ func Set(router *gin.Engine) {
 			c.JSON(http.StatusBadRequest, gin.H{"message": error.Error()})
 			return
 		}
-		response := services.Mutant(dna.Dna)
+		response, err := services.Mutant(dna.Dna)
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"message": "Internal server error"})
+			return
+		}
 		c.JSON(int(response.Status), gin.H{"message": response.Message})
 	})
 
 	router.GET("/stats", func(c *gin.Context) {
-		var stats schema.Stats = services.Stats()
+		stats, err := services.Stats()
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"message": "Internal server error"})
+			return
+		}
 		c.JSON(http.StatusOK, stats)
 	})
 

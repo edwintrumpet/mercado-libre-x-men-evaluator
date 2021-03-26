@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  app:
+    env_file:
+      - ../.env
+    depends_on:
+      - db
+    build:
+      context: ../
+      dockerfile: ./docker/dockerfiles/dev.Dockerfile
+    ports:
+      - "80:80"
+    command:
+      [
+        "CompileDaemon",
+        "-directory=./src",
+        "-build=go build -o ../bin/server",
+        "-command=./bin/server",
+      ]
+    volumes:
+      - ../:/usr/src/app
+
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: key
+    volumes:
+      - ../db_data:/var/lib/postgresql/data

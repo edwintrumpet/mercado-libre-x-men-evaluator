@@ -21,8 +21,13 @@ func Set(router *gin.Engine) {
 			c.JSON(http.StatusBadRequest, gin.H{"message": error.Error()})
 			return
 		}
-		response := services.MutantService(dna.Dna)
+		response := services.Mutant(dna.Dna)
 		c.JSON(int(response.Status), gin.H{"message": response.Message})
+	})
+
+	router.GET("/stats", func(c *gin.Context) {
+		var stats schema.Stats = services.Stats()
+		c.JSON(http.StatusOK, stats)
 	})
 
 	router.NoRoute(func(c *gin.Context) {

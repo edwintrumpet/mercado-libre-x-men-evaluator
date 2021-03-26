@@ -9,7 +9,7 @@ import (
 
 // MutantService receives a dna secuence and returns an ok message if
 // dna belongs to a mutant and false otherwise
-func MutantService(dna []string) schema.Response {
+func Mutant(dna []string) schema.Response {
 	var response schema.Response
 
 	isMutant := isMutant.IsMutant(dna)

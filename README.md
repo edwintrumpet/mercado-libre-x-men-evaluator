@@ -68,7 +68,11 @@ Possible answers
 - Route `/mutant`  
   ![secuence for /mutant](./assets/secuence_mutants.png)
 - Route `/stats`  
-  ![secuence for /mutant](./assets/secuence_stats.png)
+  ![secuence for /stats](./assets/secuence_stats.png)
+
+## System architecture
+
+![system architecture](./assets/arquitectura.png)
 
 ## Scripts
 

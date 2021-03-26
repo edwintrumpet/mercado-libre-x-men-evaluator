@@ -5,17 +5,61 @@
 </p>
 
 <p align="center">
+  <img src="https://raw.githubusercontent.com/devicons/devicon/2809b567852a4648062a2d3e7c1c531367458c0b/icons/amazonwebservices/amazonwebservices-original.svg" alt="aws" width="40" height="40"/>
   <img src="https://raw.githubusercontent.com/devicons/devicon/2809b567852a4648062a2d3e7c1c531367458c0b/icons/docker/docker-original.svg" alt="docker" width="40" height="40"/>
   <img src="https://simpleicons.org/icons/githubactions.svg" alt="github actions" width="40" height="40"/>
   <img src="https://raw.githubusercontent.com/devicons/devicon/2809b567852a4648062a2d3e7c1c531367458c0b/icons/go/go-original.svg" alt="go" width="40" height="40"/>
 </p>
 
-This program have some DNA secuences and uses the IsMutant
-function to evaluate if DNA secuence belongs to a mutant.
+API that takes some DNA secuences and evaluates if DNA secuence
+belongs to a mutant.
 
-If DNA secuence belongs to a mutant IsMutant function will
-return a true, if DNA secuence does not belong a mutant so
-it will return a false.
+## Routes
+
+Request instructions
+
+| método | endpoint  | parámetros |            valores            |
+| :----: | :-------: | :--------: | :---------------------------: |
+|  POST  | `/mutant` |    body    | See the following json format |
+|  GET   | `/stats`  |            |                               |
+
+```json
+{
+  "dna": ["ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG"]
+}
+```
+
+Possible answers
+
+- `/mutant`  
+  Returns a status code 200 with a succes message if DNA belongs to
+  a mutant
+
+  ```json
+  {
+    "message": "OK"
+  }
+  ```
+
+  Returns a status code 403 with a Forbidden message if DNA does not
+  belongs to a mutant
+
+  ```json
+  {
+    "message": "Forbidden"
+  }
+  ```
+
+- `/stats`  
+  Returns a status code 200 with a json that contains info about requests
+  amount
+  ```json
+  {
+    "count_mutant_dna": 9,
+    "count_human_dna": 10,
+    "ratio": 0.9
+  }
+  ```
 
 ## Scripts
 
@@ -30,6 +74,8 @@ it will return a false.
 
 To run API in develop mode you must to have Docker installed
 
+First you must to create `.env` file taking `.env.example` as example
+
 If you run this project first time execute the following command
 to build the image
 
@@ -43,25 +89,57 @@ To run API in develop mode
 ./run.sh
 ```
 
-API will be listening on http://localhost
+Database will be executed automatically and API will be listening on http://localhost
+
+In another terminal execute
+
+```shell
+./run.sh runDB
+```
+
+Create an user with the same name and password that you have in `.env`
+
+```sql
+CREATE USER <username> WITH PASSWORD '<password>';
+```
+
+Grant all privileges to user
+
+```sql
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO <username>;
+```
+
+Create **stats** table
+
+```sql
+CREATE TABLE IF NOT EXISTS stats (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(20) NOT NULL,
+  value INT DEFAULT 0
+);
+```
+
+```sql
+ALTER TABLE stats
+  ADD CONSTRAINT uq_name_stat
+  UNIQUE (name);
+```
+
+Populate database
+
+```sql
+INSERT INTO stats (name) VALUES
+  ('count_mutant_dna'),
+  ('count_human_dna');
+```
+
+You're ready to develop!
 
 To remove docker container
 
 ```shell
 ./run.sh down
 ```
-
-### Without Docker
-
-To run API in develop mode you must to have Go installed
-
-To run API in develop mode
-
-```shell
-./run.sh run
-```
-
-API will be listening on http://localhost
 
 ## Deploy
 

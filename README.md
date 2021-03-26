@@ -20,10 +20,10 @@ API available on http://3.238.192.139/
 
 Request instructions
 
-| método | endpoint  | parámetros |            valores            |
-| :----: | :-------: | :--------: | :---------------------------: |
-|  POST  | `/mutant` |    body    | See the following json format |
-|  GET   | `/stats`  |            |                               |
+| method | endpoint  | params |            values             |
+| :----: | :-------: | :----: | :---------------------------: |
+|  POST  | `/mutant` |  body  | See the following json format |
+|  GET   | `/stats`  |        |                               |
 
 ```json
 {
@@ -63,6 +63,13 @@ Possible answers
   }
   ```
 
+## Diagram of decuence
+
+- Route `/mutant`  
+  ![secuence for /mutant](./assets/secuence_mutants.png)
+- Route `/stats`  
+  ![secuence for /mutant](./assets/secuence_stats.png)
+
 ## Scripts
 
 - **`./run.sh`** => Execute API and database in develop mode
@@ -76,8 +83,6 @@ Possible answers
 - **`./run.sh coverage`** => Run tests coverage
 
 ## Develop
-
-### Using Docker
 
 To run API in develop mode you must to have Docker installed
 
